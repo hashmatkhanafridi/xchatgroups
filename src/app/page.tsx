@@ -40,11 +40,11 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="flex flex-col gap-16 pb-16">
+    <div className="flex flex-col gap-10 md:gap-16 pb-10 md:pb-16">
       {/* Hero Section */}
-      <section className="bg-muted/30 border-b border-border py-20 px-4">
+      <section className="bg-muted/30 border-b border-border py-12 md:py-20 px-4">
         <div className="container mx-auto max-w-4xl text-center">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
+          <h1 className="text-[2rem] leading-[1.15] sm:text-4xl md:text-6xl font-bold tracking-tight mb-6 bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
             Find the Best <span className="text-primary">XChat</span> Groups
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto text-balance">
@@ -87,14 +87,14 @@ export default async function Home() {
       {/* Categories Grid */}
       <section id="categories" className="container mx-auto px-4">
         <h2 className="text-2xl font-bold mb-8">Browse by Category</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
           {categories.map((category) => (
             <Link 
               key={category.id} 
               href={`/category/${category.slug}`}
-              className="bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-3xl hover:bg-white/10 hover:border-white/20 hover:scale-[1.02] transition-all text-center group"
+              className="bg-white/5 backdrop-blur-md border border-white/10 p-4 md:p-5 rounded-2xl md:rounded-3xl hover:bg-white/10 hover:border-white/20 hover:scale-[1.02] transition-all text-center group flex items-center justify-center min-h-[80px]"
             >
-              <h3 className="font-medium group-hover:text-primary transition-colors">{category.name}</h3>
+              <h3 className="font-medium text-sm md:text-base group-hover:text-primary transition-colors">{category.name}</h3>
             </Link>
           ))}
         </div>

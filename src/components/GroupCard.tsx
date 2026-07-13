@@ -21,8 +21,8 @@ export function GroupCard({ group, category }: GroupCardProps) {
       <p className="text-sm text-muted-foreground line-clamp-3 mb-6 flex-1">
         {group.description}
       </p>
-      <div className="flex items-center justify-between mt-auto pt-4 border-t border-border/50">
-        <div className="flex items-center text-sm text-muted-foreground bg-white/5 px-3 py-1.5 rounded-full border border-white/5">
+      <div className="flex items-center justify-between mt-auto pt-4 border-t border-border/50 flex-wrap gap-3">
+        <div className="flex items-center text-sm text-muted-foreground bg-white/5 px-3 py-2 rounded-full border border-white/5">
           <Users size={16} className="mr-1.5" />
           {group.member_count ? `${group.member_count.toLocaleString()}+` : 'Unknown'}
         </div>
@@ -30,7 +30,7 @@ export function GroupCard({ group, category }: GroupCardProps) {
           href={group.join_link}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center text-sm font-medium bg-primary text-primary-foreground px-5 py-2 rounded-full hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
+          className="flex items-center justify-center text-sm font-medium bg-primary text-primary-foreground px-6 py-2.5 rounded-full hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 flex-1 sm:flex-none min-w-[120px]"
         >
           Join <ExternalLink size={14} className="ml-1.5" />
         </a>
