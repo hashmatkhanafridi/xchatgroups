@@ -9,16 +9,16 @@ export function Header() {
           <div className="bg-white/5 border border-white/10 p-2 rounded-2xl text-primary group-hover:scale-105 transition-transform">
             <MessageSquarePlus size={24} />
           </div>
-          <span className="font-bold text-xl tracking-tight">
-            XChat Groups
+          <span className="font-bold text-lg sm:text-xl tracking-tight">
+            XChat <span className="hidden sm:inline">Groups</span>
           </span>
         </Link>
-        <nav className="flex items-center space-x-4">
-          <Link href="/about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+        <nav className="flex items-center space-x-3 sm:space-x-4">
+          <Link href="/about" className="hidden sm:block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             About
           </Link>
-          <Link href="/submit" className="text-sm font-medium bg-primary text-primary-foreground px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">
-            Submit Group
+          <Link href="/submit" className="text-sm font-medium bg-primary text-primary-foreground px-4 sm:px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">
+            Submit <span className="hidden sm:inline">Group</span>
           </Link>
         </nav>
       </div>
