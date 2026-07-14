@@ -2,6 +2,8 @@ import { supabase } from '@/lib/supabase';
 import { SubmitForm } from './SubmitForm';
 import { Category } from '@/lib/types';
 
+export const revalidate = 60; // Revalidate every minute
+
 export default async function SubmitPage() {
   const { data: categoriesData } = await supabase
     .from('categories')
