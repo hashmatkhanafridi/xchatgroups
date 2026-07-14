@@ -14,7 +14,13 @@ export default async function AdminPage() {
     return <div className="p-8 text-red-500">Error loading groups: {error.message}</div>;
   }
 
+  const { data: categoriesData } = await supabaseAdmin
+    .from('categories')
+    .select('*')
+    .order('name');
+
   const groups = groupsData as any[];
+  const categories = categoriesData as Category[];
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -66,7 +72,7 @@ export default async function AdminPage() {
                     </span>
                   </td>
                   <td className="p-4">
-                    <AdminControls groupId={group.id} currentStatus={group.status} />
+                    <AdminControls group={group} categories={categories} />
                   </td>
                 </tr>
               ))

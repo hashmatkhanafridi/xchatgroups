@@ -20,6 +20,23 @@ export async function updateGroupStatus(id: string, status: 'approved' | 'reject
   return { success: true };
 }
 
+export async function updateGroupDetails(id: string, data: any) {
+  const { error } = await supabaseAdmin
+    .from('groups')
+    .update(data)
+    .eq('id', id);
+
+  if (error) {
+    console.error('Error updating group:', error);
+    return { error: 'Failed to update group' };
+  }
+
+  revalidatePath('/');
+  revalidatePath('/category/[slug]', 'page');
+  revalidatePath('/admin');
+  return { success: true };
+}
+
 export async function deleteGroup(id: string) {
   const { error } = await supabaseAdmin
     .from('groups')
