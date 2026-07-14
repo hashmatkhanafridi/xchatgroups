@@ -42,9 +42,18 @@ export default async function Home() {
   return (
     <div className="flex flex-col gap-10 md:gap-16 pb-10 md:pb-16">
       {/* Hero Section */}
-      <section className="bg-muted/30 border-b border-border py-12 md:py-20 px-4">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h1 className="text-[2rem] leading-[1.15] sm:text-4xl md:text-6xl font-bold tracking-tight mb-6 bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
+      <section className="relative overflow-hidden border-b border-border py-16 md:py-28 px-4">
+        {/* Abstract Background Effects */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-[#050505] z-0" />
+        
+        {/* Glowing Orb */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg md:max-w-3xl h-[300px] md:h-[400px] bg-primary/15 blur-[100px] md:blur-[130px] rounded-full pointer-events-none z-0" />
+        
+        {/* Dot Grid Pattern */}
+        <div className="absolute inset-0 z-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
+
+        <div className="relative z-10 container mx-auto max-w-4xl text-center">
+          <h1 className="text-[2.25rem] leading-[1.15] sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-br from-white to-white/60 bg-clip-text text-transparent">
             Find the Best <span className="text-primary">XChat</span> Groups
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto text-balance">

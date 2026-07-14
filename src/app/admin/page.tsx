@@ -29,13 +29,13 @@ export default async function AdminPage() {
       <div className="bg-card border border-border rounded-xl overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="border-b border-border bg-muted/50">
-              <th className="p-4 font-medium text-sm text-muted-foreground">Name</th>
-              <th className="p-4 font-medium text-sm text-muted-foreground">Category</th>
-              <th className="p-4 font-medium text-sm text-muted-foreground">Link</th>
-              <th className="p-4 font-medium text-sm text-muted-foreground">Contact</th>
-              <th className="p-4 font-medium text-sm text-muted-foreground">Status</th>
-              <th className="p-4 font-medium text-sm text-muted-foreground">Actions</th>
+            <tr className="border-b border-border bg-white/5">
+              <th className="p-4 font-semibold text-sm text-foreground">Name</th>
+              <th className="p-4 font-semibold text-sm text-foreground">Category</th>
+              <th className="p-4 font-semibold text-sm text-foreground">Link</th>
+              <th className="p-4 font-semibold text-sm text-foreground">Contact</th>
+              <th className="p-4 font-semibold text-sm text-foreground">Status</th>
+              <th className="p-4 font-semibold text-sm text-foreground">Actions</th>
             </tr>
           </thead>
           <tbody>
