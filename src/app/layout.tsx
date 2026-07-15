@@ -7,8 +7,19 @@ import { Footer } from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "XChat Groups Directory",
-  description: "Browse and join public XChat groups. An unofficial directory for X Corp's XChat messaging app.",
+  title: "X Chat Group Links Directory - Find & Join Active X Groups",
+  description: "The #1 directory for active X (Twitter) Chat groups. Browse categories, find niche communities, and share your X group links for free.",
+  icons: {
+    icon: [{ url: '/icon', sizes: '48x48', type: 'image/png' }],
+    apple: [{ url: '/apple-icon', sizes: '180x180', type: 'image/png' }],
+  },
+  openGraph: {
+    title: "X Chat Group Links Directory - Find & Join Active X Groups",
+    description: "The #1 directory for active X (Twitter) Chat groups. Browse categories, find niche communities, and share your X group links for free.",
+    url: "https://xchatgroups.chat",
+    siteName: "XChat Groups Directory",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
