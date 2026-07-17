@@ -2,12 +2,14 @@ export interface Category {
   id: string;
   name: string;
   slug: string;
+  intro_text: string | null;
   created_at: string;
 }
 
 export interface Group {
   id: string;
   name: string;
+  slug: string | null;
   description: string;
   category_id: string;
   join_link: string;
