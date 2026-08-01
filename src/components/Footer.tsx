@@ -7,40 +7,30 @@ export function Footer() {
       {/* Subtle Cyan Gradient Top Divider Glow */}
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent pointer-events-none" />
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-10">
-          {/* Column 1: Brand & Disclaimer (7 cols) */}
-          <div className="md:col-span-7 space-y-4">
-            <div className="flex items-center space-x-2.5">
-              <div className="bg-white/5 border border-white/10 p-2 rounded-2xl text-primary">
-                <MessageSquarePlus size={20} />
+      <div className="container mx-auto px-4 py-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start md:items-center mb-8">
+          {/* Column 1: Brand Logo & Title (6 cols) */}
+          <div className="md:col-span-6 flex items-center">
+            <div className="flex items-center space-x-3">
+              <div className="bg-white/5 border border-white/10 p-2.5 rounded-2xl text-primary">
+                <MessageSquarePlus size={22} />
               </div>
-              <span className="font-bold text-lg tracking-tight text-foreground">
+              <span className="font-bold text-xl tracking-tight text-foreground">
                 XChat Groups
               </span>
             </div>
-
-            <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
-              The premier unofficial directory for discovering, sharing, and joining active chat communities on X (formerly Twitter).
-            </p>
-
-            <div className="pt-1">
-              <p className="text-xs text-muted-foreground/70 leading-relaxed bg-white/5 border border-white/5 rounded-xl p-3 max-w-md">
-                <strong className="text-muted-foreground">Disclaimer:</strong> Independent directory not affiliated, endorsed, or connected with X Corp. Group links are user-submitted.
-              </p>
-            </div>
           </div>
 
-          {/* Column 2: Pages & Legal (5 cols) */}
-          <div className="md:col-span-5 md:pl-8">
-            <h4 className="font-semibold text-sm text-foreground mb-4 tracking-wide uppercase text-xs text-primary/90">
+          {/* Column 2: Pages & Legal (6 cols) */}
+          <div className="md:col-span-6 md:pl-8">
+            <h4 className="font-semibold text-xs uppercase tracking-wider text-primary/90 mb-3">
               Pages & Legal
             </h4>
-            <ul className="space-y-2.5 text-sm text-muted-foreground">
+            <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
               <li>
                 <Link
                   href="/about"
-                  className="hover:text-primary transition-colors inline-block py-0.5"
+                  className="hover:text-primary transition-colors py-0.5"
                 >
                   About Us
                 </Link>
@@ -48,7 +38,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/contact"
-                  className="hover:text-primary transition-colors inline-block py-0.5"
+                  className="hover:text-primary transition-colors py-0.5"
                 >
                   Contact Us
                 </Link>
@@ -56,7 +46,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/privacy"
-                  className="hover:text-primary transition-colors inline-block py-0.5"
+                  className="hover:text-primary transition-colors py-0.5"
                 >
                   Privacy Policy
                 </Link>
@@ -64,15 +54,15 @@ export function Footer() {
               <li>
                 <Link
                   href="/terms"
-                  className="hover:text-primary transition-colors inline-block py-0.5"
+                  className="hover:text-primary transition-colors py-0.5"
                 >
                   Terms & Conditions
                 </Link>
               </li>
-              <li className="pt-1">
+              <li>
                 <Link
                   href="/submit"
-                  className="inline-flex items-center gap-1.5 text-xs font-medium bg-primary/10 text-primary border border-primary/20 px-3.5 py-1.5 rounded-full hover:bg-primary/20 transition-all"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium bg-primary/10 text-primary border border-primary/20 px-3 py-1 rounded-full hover:bg-primary/20 transition-all"
                 >
                   Submit Group
                 </Link>
@@ -81,7 +71,7 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Copyright & Contact Bar (No Duplicate Links) */}
+        {/* Bottom Copyright & Contact Bar */}
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-muted-foreground gap-3">
           <p>© {new Date().getFullYear()} XChat Groups Directory. All rights reserved.</p>
           <a
