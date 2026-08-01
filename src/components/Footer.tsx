@@ -74,16 +74,6 @@ export function Footer() {
                   Submit Group
                 </Link>
               </li>
-              <li>
-                <a
-                  href="/sitemap.xml"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors text-xs text-muted-foreground/80"
-                >
-                  Sitemap XML
-                </a>
-              </li>
             </ul>
           </div>
         </div>
