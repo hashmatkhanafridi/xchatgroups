@@ -11,7 +11,6 @@ export const revalidate = 3600;
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 async function getGroup(idOrSlug: string) {
-  // Try slug first, then fall back to UUID id
   const { data: bySlug } = await supabase
     .from('groups')
     .select('*, categories(*)')
@@ -52,16 +51,20 @@ export async function generateMetadata({
   const group = await getGroup(params.id);
   if (!group) return { title: 'Group Not Found' };
 
-  const category = group.categories as unknown as Category;
-  const shortDesc = group.description?.slice(0, 155);
+  const groupIdentifier = group.slug || group.id;
+  const canonicalUrl = `https://www.xchatgroups.chat/groups/${groupIdentifier}`;
+  const shortDesc = group.description?.slice(0, 155) ?? `Join the ${group.name} XChat group on X. Discover community discussions and active members.`;
 
   return {
-    title: `${group.name} XChat Group - Join Now | XChat Groups Directory`,
+    title: `${group.name} XChat Group - Join Now | XChat Directory`,
     description: shortDesc,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: `${group.name} – XChat Group`,
       description: shortDesc,
-      url: `https://xchatgroups.chat/groups/${params.id}`,
+      url: canonicalUrl,
       type: 'website',
     },
   };
@@ -79,9 +82,9 @@ function GroupJsonLd({ group, category, url }: { group: any; category: Category 
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xchatgroups.chat' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.xchatgroups.chat' },
         category
-          ? { '@type': 'ListItem', position: 2, name: category.name, item: `https://xchatgroups.chat/category/${category.slug}` }
+          ? { '@type': 'ListItem', position: 2, name: category.name, item: `https://www.xchatgroups.chat/category/${category.slug}` }
           : null,
         { '@type': 'ListItem', position: category ? 3 : 2, name: group.name, item: url },
       ].filter(Boolean),
@@ -112,7 +115,8 @@ export default async function GroupPage({ params }: { params: { id: string } }) 
 
   const category = group.categories as unknown as Category | null;
   const relatedGroups = category ? await getRelatedGroups(category.id, group.id) : [];
-  const pageUrl = `https://xchatgroups.chat/groups/${params.id}`;
+  const groupIdentifier = group.slug || group.id;
+  const pageUrl = `https://www.xchatgroups.chat/groups/${groupIdentifier}`;
 
   return (
     <>
@@ -120,7 +124,7 @@ export default async function GroupPage({ params }: { params: { id: string } }) 
 
       <div className="container mx-auto px-4 py-10 md:py-14 max-w-4xl">
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-8 flex-wrap">
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-muted-foreground mb-8 flex-wrap">
           <Link href="/" className="hover:text-primary transition-colors">Home</Link>
           <span>/</span>
           {category && (
@@ -132,10 +136,10 @@ export default async function GroupPage({ params }: { params: { id: string } }) 
             </>
           )}
           <span className="text-foreground font-medium truncate max-w-[200px]">{group.name}</span>
-        </div>
+        </nav>
 
         {/* Main Card */}
-        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-10">
+        <article className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-10">
           {/* Category Tag */}
           {category && (
             <Link
@@ -185,11 +189,11 @@ export default async function GroupPage({ params }: { params: { id: string } }) 
           <p className="mt-3 text-xs text-muted-foreground/60">
             You will be redirected to the XChat app to join this group.
           </p>
-        </div>
+        </article>
 
         {/* Related Groups */}
         {relatedGroups.length > 0 && (
-          <section>
+          <section aria-label="Related Groups">
             <h2 className="text-xl font-bold mb-5">
               More {category?.name} Groups
             </h2>

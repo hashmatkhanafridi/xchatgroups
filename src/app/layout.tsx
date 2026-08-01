@@ -7,16 +7,24 @@ import { Footer } from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.xchatgroups.chat"),
   title: "XChat Group Links Directory - Find & Join Active XChat Groups",
   description: "The #1 directory for active XChat (X Corp's messaging app) groups. Browse categories, find niche communities, and share your XChat group links for free.",
+  alternates: {
+    canonical: "/",
+  },
   icons: {
-    icon: [{ url: '/icon', sizes: '48x48', type: 'image/png' }],
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48', type: 'image/x-icon' },
+      { url: '/icon', sizes: '48x48', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
     apple: [{ url: '/apple-icon', sizes: '180x180', type: 'image/png' }],
   },
   openGraph: {
     title: "XChat Group Links Directory - Find & Join Active XChat Groups",
     description: "The #1 directory for active XChat (X Corp's messaging app) groups. Browse categories, find niche communities, and share your XChat group links for free.",
-    url: "https://xchatgroups.chat",
+    url: "https://www.xchatgroups.chat",
     siteName: "XChat Groups Directory",
     type: "website",
   },
