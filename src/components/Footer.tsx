@@ -1,76 +1,79 @@
 import Link from 'next/link';
+import { MessageSquarePlus, Mail } from 'lucide-react';
 
 export function Footer() {
-  const categories = [
-    { name: 'Crypto & Trading', slug: 'crypto-trading' },
-    { name: 'Tech & AI', slug: 'tech-ai' },
-    { name: 'Business & Entrepreneurship', slug: 'business-entrepreneurship' },
-    { name: 'Sports & Football', slug: 'sports-football' },
-    { name: 'Gaming', slug: 'gaming' },
-    { name: 'Movies & TV', slug: 'movies-tv' },
-    { name: 'Education & Jobs', slug: 'education-jobs' },
-    { name: 'Dating & Social', slug: 'dating-social' },
-    { name: 'Entertainment', slug: 'entertainment' },
-    { name: 'News & Current Affairs', slug: 'news-current-affairs' },
-  ];
-
   return (
-    <footer className="border-t border-border mt-auto bg-background/40 backdrop-blur-md">
+    <footer className="relative border-t border-white/10 mt-auto bg-background/60 backdrop-blur-xl overflow-hidden">
+      {/* Subtle Cyan Gradient Top Divider Glow */}
+      <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent pointer-events-none" />
+
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* Col 1: Brand & Disclaimer */}
-          <div className="md:col-span-1 space-y-3">
-            <h3 className="font-bold text-lg text-foreground">XChat Groups</h3>
-            <p className="text-sm text-muted-foreground">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-10">
+          {/* Column 1: Brand & Disclaimer (7 cols) */}
+          <div className="md:col-span-7 space-y-4">
+            <div className="flex items-center space-x-2.5">
+              <div className="bg-white/5 border border-white/10 p-2 rounded-2xl text-primary">
+                <MessageSquarePlus size={20} />
+              </div>
+              <span className="font-bold text-lg tracking-tight text-foreground">
+                XChat Groups
+              </span>
+            </div>
+
+            <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
               The premier unofficial directory for discovering, sharing, and joining active chat communities on X (formerly Twitter).
             </p>
-            <p className="text-xs text-muted-foreground/80 leading-relaxed pt-1">
-              Disclaimer: Independent directory not affiliated with X Corp.
-            </p>
-          </div>
 
-          {/* Col 2: Categories */}
-          <div className="md:col-span-2">
-            <h4 className="font-semibold text-sm text-foreground mb-3">Popular Categories</h4>
-            <div className="grid grid-cols-2 gap-2 text-sm text-muted-foreground">
-              {categories.map((cat) => (
-                <Link
-                  key={cat.slug}
-                  href={`/category/${cat.slug}`}
-                  className="hover:text-foreground transition-colors"
-                >
-                  {cat.name}
-                </Link>
-              ))}
+            <div className="pt-1">
+              <p className="text-xs text-muted-foreground/70 leading-relaxed bg-white/5 border border-white/5 rounded-xl p-3 max-w-md">
+                <strong className="text-muted-foreground">Disclaimer:</strong> Independent directory not affiliated, endorsed, or connected with X Corp. Group links are user-submitted.
+              </p>
             </div>
           </div>
 
-          {/* Col 3: Legal & Site Pages */}
-          <div>
-            <h4 className="font-semibold text-sm text-foreground mb-3">Pages & Legal</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+          {/* Column 2: Pages & Legal (5 cols) */}
+          <div className="md:col-span-5 md:pl-8">
+            <h4 className="font-semibold text-sm text-foreground mb-4 tracking-wide uppercase text-xs text-primary/90">
+              Pages & Legal
+            </h4>
+            <ul className="space-y-2.5 text-sm text-muted-foreground">
               <li>
-                <Link href="/about" className="hover:text-foreground transition-colors">
+                <Link
+                  href="/about"
+                  className="hover:text-primary transition-colors inline-block py-0.5"
+                >
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-foreground transition-colors">
+                <Link
+                  href="/contact"
+                  className="hover:text-primary transition-colors inline-block py-0.5"
+                >
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="hover:text-foreground transition-colors">
+                <Link
+                  href="/privacy"
+                  className="hover:text-primary transition-colors inline-block py-0.5"
+                >
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-foreground transition-colors">
+                <Link
+                  href="/terms"
+                  className="hover:text-primary transition-colors inline-block py-0.5"
+                >
                   Terms & Conditions
                 </Link>
               </li>
-              <li>
-                <Link href="/submit" className="hover:text-foreground transition-colors">
+              <li className="pt-1">
+                <Link
+                  href="/submit"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium bg-primary/10 text-primary border border-primary/20 px-3.5 py-1.5 rounded-full hover:bg-primary/20 transition-all"
+                >
                   Submit Group
                 </Link>
               </li>
@@ -78,19 +81,16 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-border/50 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-muted-foreground gap-2">
+        {/* Bottom Copyright & Contact Bar (No Duplicate Links) */}
+        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-muted-foreground gap-3">
           <p>© {new Date().getFullYear()} XChat Groups Directory. All rights reserved.</p>
-          <div className="flex gap-4">
-            <Link href="/privacy" className="hover:underline">
-              Privacy
-            </Link>
-            <Link href="/terms" className="hover:underline">
-              Terms
-            </Link>
-            <Link href="/contact" className="hover:underline">
-              Contact
-            </Link>
-          </div>
+          <a
+            href="mailto:admin@xchatgroups.chat"
+            className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"
+          >
+            <Mail size={13} className="text-primary" />
+            <span>admin@xchatgroups.chat</span>
+          </a>
         </div>
       </div>
     </footer>
