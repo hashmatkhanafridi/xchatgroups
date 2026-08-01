@@ -14,7 +14,11 @@ export function GroupCard({ group, category }: GroupCardProps) {
   return (
     <div className="bg-card backdrop-blur-md border border-border rounded-3xl p-6 hover:bg-white/5 transition-all hover:scale-[1.02] hover:border-white/20 flex flex-col h-full">
       <div className="flex justify-between items-start mb-3">
-        <h3 className="font-semibold text-lg line-clamp-1">{group.name}</h3>
+        <h3 className="font-semibold text-lg line-clamp-1">
+          <Link href={groupUrl} className="hover:text-primary transition-colors">
+            {group.name}
+          </Link>
+        </h3>
         {category && (
           <Link
             href={`/category/${category.slug}`}
@@ -24,7 +28,7 @@ export function GroupCard({ group, category }: GroupCardProps) {
           </Link>
         )}
       </div>
-      <p className="text-sm text-muted-foreground line-clamp-3 mb-6 flex-1">
+      <p className="text-sm text-muted-foreground line-clamp-2 mb-6 flex-1">
         {group.description}
       </p>
       <div className="flex items-center justify-between mt-auto pt-4 border-t border-border/50 flex-wrap gap-3">
