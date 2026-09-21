@@ -1,10 +1,15 @@
+import { requireAdmin } from '@/lib/admin-auth';
+import type { Metadata } from 'next';
 import { supabaseAdmin } from '@/lib/supabase';
 import { Group, Category } from '@/lib/types';
 import { AdminControls } from './AdminControls';
 
+export const metadata: Metadata = { robots: { index: false, follow: false } };
+
 export const revalidate = 0; // Don't cache admin page
 
 export default async function AdminPage() {
+  requireAdmin();
   const { data: groupsData, error } = await supabaseAdmin
     .from('groups')
     .select('*, categories(*)')

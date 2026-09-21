@@ -18,3 +18,8 @@ export function slugify(text: string): string {
 export function groupPath(group: { id: string; slug?: string | null }): string {
   return `/groups/${group.slug || group.id}`;
 }
+
+/** Keep user content inside JSON-LD rather than allowing it to close the script. */
+export function serializeJsonLd(value: unknown): string {
+  return JSON.stringify(value).replace(/</g, '\\u003c');
+}

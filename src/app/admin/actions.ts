@@ -1,9 +1,11 @@
 'use server';
 
+import { requireAdmin } from '@/lib/admin-auth';
 import { supabaseAdmin } from '@/lib/supabase';
 import { revalidatePath } from 'next/cache';
 
 export async function updateGroupStatus(id: string, status: 'approved' | 'rejected' | 'broken') {
+  requireAdmin();
   const { error } = await supabaseAdmin
     .from('groups')
     .update({ status })
@@ -16,11 +18,14 @@ export async function updateGroupStatus(id: string, status: 'approved' | 'reject
 
   revalidatePath('/');
   revalidatePath('/category/[slug]', 'page');
+  revalidatePath('/groups/[id]', 'page');
+  revalidatePath('/sitemap.xml');
   revalidatePath('/admin');
   return { success: true };
 }
 
 export async function updateGroupDetails(id: string, data: any) {
+  requireAdmin();
   const { error } = await supabaseAdmin
     .from('groups')
     .update(data)
@@ -33,11 +38,14 @@ export async function updateGroupDetails(id: string, data: any) {
 
   revalidatePath('/');
   revalidatePath('/category/[slug]', 'page');
+  revalidatePath('/groups/[id]', 'page');
+  revalidatePath('/sitemap.xml');
   revalidatePath('/admin');
   return { success: true };
 }
 
 export async function deleteGroup(id: string) {
+  requireAdmin();
   const { error } = await supabaseAdmin
     .from('groups')
     .delete()
@@ -50,6 +58,8 @@ export async function deleteGroup(id: string) {
 
   revalidatePath('/');
   revalidatePath('/category/[slug]', 'page');
+  revalidatePath('/groups/[id]', 'page');
+  revalidatePath('/sitemap.xml');
   revalidatePath('/admin');
   return { success: true };
 }

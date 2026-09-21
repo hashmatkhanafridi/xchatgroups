@@ -1,3 +1,4 @@
+import { serializeJsonLd } from '@/lib/utils';
 import { supabase } from '@/lib/supabase';
 import { GroupCard } from '@/components/GroupCard';
 import { Group, Category } from '@/lib/types';
@@ -84,7 +85,7 @@ function CategoryJsonLd({
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }}
     />
   );
 }
@@ -147,11 +148,11 @@ export default async function CategoryPage({ params }: { params: { slug: string 
             ) : (
               <>
                 <p>
-                  Welcome to the official directory for <strong>{category.name} XChat groups</strong> on X (formerly Twitter). 
-                  Here you can explore active, user-submitted communities focused on {category.name.toLowerCase()}, network with passionate members, and exchange real-time updates.
+                  Welcome to the unofficial directory for <strong>{category.name} XChat groups</strong> on X (formerly Twitter).
+                  Here you can explore user-submitted communities focused on {category.name.toLowerCase()}, network with passionate members, and exchange real-time updates.
                 </p>
                 <p>
-                  Whether you are seeking real-time discussions, expert insights, or casual networking, our curated directory lists active group links with instant access. Browse the active groups below, click to view details, or submit your own group link to grow your community.
+                  Whether you are seeking real-time discussions, expert insights, or casual networking, this directory lists community links submitted for review. Browse the groups below or submit your own. Link availability and membership requirements can change.
                 </p>
               </>
             )}
