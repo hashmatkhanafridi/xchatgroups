@@ -5,28 +5,29 @@ export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.xchatgroups.chat';
-  const now = new Date();
 
   // Static routes
   const routes: MetadataRoute.Sitemap = [
-    { url: baseUrl, lastModified: now, changeFrequency: 'daily', priority: 1.0 },
-    { url: `${baseUrl}/submit`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/about`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/privacy`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${baseUrl}/terms`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${baseUrl}/contact`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
+    { url: baseUrl, changeFrequency: 'daily', priority: 1.0 },
+    { url: `${baseUrl}/guides/xchat-group-links`, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/submit`, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/about`, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/privacy`, changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${baseUrl}/terms`, changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${baseUrl}/contact`, changeFrequency: 'monthly', priority: 0.6 },
   ];
 
   // Category pages
-  const { data: categories } = await supabase
+  const { data: categories, error: categoriesError } = await supabase
     .from('categories')
-    .select('slug, created_at');
+    .select('slug');
+
+  if (categoriesError) throw new Error('Unable to load sitemap categories');
 
   if (categories) {
     routes.push(
       ...categories.map((c) => ({
         url: `${baseUrl}/category/${c.slug}`,
-        lastModified: c.created_at ? new Date(c.created_at) : now,
         changeFrequency: 'daily' as const,
         priority: 0.9,
       }))
@@ -34,16 +35,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   // Individual group pages
-  const { data: groups } = await supabase
+  const { data: groups, error: groupsError } = await supabase
     .from('groups')
-    .select('id, slug, submitted_at')
+    .select('id, slug')
     .eq('status', 'approved');
+
+  if (groupsError) throw new Error('Unable to load sitemap groups');
 
   if (groups) {
     routes.push(
       ...groups.map((g) => ({
         url: `${baseUrl}/groups/${g.slug || g.id}`,
-        lastModified: g.submitted_at ? new Date(g.submitted_at) : now,
         changeFrequency: 'weekly' as const,
         priority: 0.8,
       }))

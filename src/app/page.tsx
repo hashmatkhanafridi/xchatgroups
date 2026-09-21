@@ -54,10 +54,10 @@ export default async function Home() {
 
         <div className="relative z-10 container mx-auto max-w-4xl text-center">
           <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-4 sm:mb-6 bg-gradient-to-br from-white to-white/60 bg-clip-text text-transparent">
-            Find the Best <span className="text-primary">XChat</span> Groups
+            Find <span className="text-primary">XChat Group Links</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 sm:mb-8 max-w-2xl mx-auto text-balance">
-            The unofficial directory for X Corp&apos;s XChat messaging app. Discover active communities, network with like-minded people, and join the conversation.
+            Browse user-submitted XChat group links by topic. Explore communities on X, check the details before joining, or submit your own group to the directory.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="#categories" className="bg-white/10 backdrop-blur-md border border-white/10 text-foreground px-8 py-3.5 rounded-full font-medium hover:bg-white/20 transition-all w-full sm:w-auto">
@@ -91,6 +91,19 @@ export default async function Home() {
             <p className="text-muted-foreground">No groups have been added yet.</p>
           </div>
         )}
+      </section>
+
+      <section className="container mx-auto px-4" aria-labelledby="joining-guide">
+        <div className="rounded-2xl border border-border bg-white/5 p-6 sm:p-8">
+          <h2 id="joining-guide" className="text-2xl font-bold mb-4">How to find and join an XChat group</h2>
+          <ol className="list-decimal pl-5 space-y-3 text-muted-foreground">
+            <li>Choose a category that matches your interests.</li>
+            <li>Open a listing and read its description before following the invitation.</li>
+            <li>Check the destination on X and review the group details before deciding to join.</li>
+          </ol>
+          <p className="mt-4 text-muted-foreground">Invitations and entry requirements can change. A listing is not a guarantee that a group is available or suitable for you.</p>
+          <Link href="/guides/xchat-group-links" className="inline-block mt-5 text-primary underline underline-offset-4">Read the group-link guide and troubleshooting tips</Link>
+        </div>
       </section>
 
       {/* Categories Grid */}

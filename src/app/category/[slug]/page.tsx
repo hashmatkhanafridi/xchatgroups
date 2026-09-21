@@ -1,3 +1,4 @@
+import { serializeJsonLd } from '@/lib/utils';
 import { supabase } from '@/lib/supabase';
 import { GroupCard } from '@/components/GroupCard';
 import { Group, Category } from '@/lib/types';
@@ -25,7 +26,7 @@ export async function generateMetadata({
   const canonicalUrl = `https://www.xchatgroups.chat/category/${data.slug}`;
   const description =
     data.intro_text?.slice(0, 155) ??
-    `Browse, discover, and join active ${data.name} XChat groups. Connect with real people and communities in the ${data.name} directory on X.`;
+    `Explore ${data.name} XChat group links. Read community descriptions, browse invitations, and submit a group to this unofficial directory.`;
 
   return {
     title: `${data.name} XChat Groups - Find & Join | XChat Directory`,
@@ -59,7 +60,7 @@ function CategoryJsonLd({
     name: `${category.name} XChat Groups`,
     description:
       category.intro_text ??
-      `Browse active XChat groups in the ${category.name} category.`,
+      `Browse XChat group links in the ${category.name} category.`,
     url: pageUrl,
     breadcrumb: {
       '@type': 'BreadcrumbList',
@@ -84,7 +85,7 @@ function CategoryJsonLd({
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }}
     />
   );
 }
@@ -147,11 +148,11 @@ export default async function CategoryPage({ params }: { params: { slug: string 
             ) : (
               <>
                 <p>
-                  Welcome to the official directory for <strong>{category.name} XChat groups</strong> on X (formerly Twitter). 
-                  Here you can explore active, user-submitted communities focused on {category.name.toLowerCase()}, network with passionate members, and exchange real-time updates.
+                  Welcome to the unofficial directory for <strong>{category.name} XChat groups</strong> on X (formerly Twitter).
+                  Here you can explore user-submitted communities focused on {category.name.toLowerCase()}, network with passionate members, and exchange real-time updates.
                 </p>
                 <p>
-                  Whether you are seeking real-time discussions, expert insights, or casual networking, our curated directory lists active group links with instant access. Browse the active groups below, click to view details, or submit your own group link to grow your community.
+                  Whether you are seeking real-time discussions, expert insights, or casual networking, this directory lists community links submitted for review. Browse the groups below or submit your own. Link availability and membership requirements can change.
                 </p>
               </>
             )}

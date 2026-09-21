@@ -1,6 +1,19 @@
+import type { Metadata } from 'next';
 import { supabase } from '@/lib/supabase';
 import { SubmitForm } from './SubmitForm';
 import { Category } from '@/lib/types';
+
+export const metadata: Metadata = {
+  title: 'Submit an XChat Group | XChat Directory',
+  description: 'Submit your public XChat group for review and inclusion in the unofficial XChat Groups directory.',
+  alternates: { canonical: '/submit' },
+  openGraph: {
+    title: 'Submit an XChat Group | XChat Directory',
+    description: 'Submit your public XChat group for review.',
+    url: 'https://www.xchatgroups.chat/submit',
+    type: 'website',
+  },
+};
 
 export const revalidate = 60; // Revalidate every minute
 

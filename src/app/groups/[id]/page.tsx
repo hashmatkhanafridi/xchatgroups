@@ -1,3 +1,4 @@
+import { serializeJsonLd } from '@/lib/utils';
 import { supabase } from '@/lib/supabase';
 import { Group, Category } from '@/lib/types';
 import { GroupCard } from '@/components/GroupCard';
@@ -102,7 +103,7 @@ function GroupJsonLd({ group, category, url }: { group: any; category: Category 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }}
     />
   );
 }
@@ -166,7 +167,7 @@ export default async function GroupPage({ params }: { params: { id: string } }) 
             )}
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <span className="inline-block w-2 h-2 rounded-full bg-green-400" />
-              Active XChat Group
+              Listed XChat Group
             </div>
           </div>
 
@@ -179,7 +180,7 @@ export default async function GroupPage({ params }: { params: { id: string } }) 
           <a
             href={group.join_link}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener noreferrer ugc"
             className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 rounded-full font-semibold text-base hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 active:scale-95"
           >
             Join Chat on X
@@ -187,7 +188,7 @@ export default async function GroupPage({ params }: { params: { id: string } }) 
           </a>
 
           <p className="mt-3 text-xs text-muted-foreground/60">
-            You will be redirected to the XChat app to join this group.
+            This link opens X. You may need to sign in or follow the instructions in the linked post. Availability can change.
           </p>
         </article>
 
