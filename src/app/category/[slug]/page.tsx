@@ -26,7 +26,7 @@ export async function generateMetadata({
   const canonicalUrl = `https://www.xchatgroups.chat/category/${data.slug}`;
   const description =
     data.intro_text?.slice(0, 155) ??
-    `Browse, discover, and join active ${data.name} XChat groups. Connect with real people and communities in the ${data.name} directory on X.`;
+    `Explore ${data.name} XChat group links. Read community descriptions, browse invitations, and submit a group to this unofficial directory.`;
 
   return {
     title: `${data.name} XChat Groups - Find & Join | XChat Directory`,
@@ -60,7 +60,7 @@ function CategoryJsonLd({
     name: `${category.name} XChat Groups`,
     description:
       category.intro_text ??
-      `Browse active XChat groups in the ${category.name} category.`,
+      `Browse XChat group links in the ${category.name} category.`,
     url: pageUrl,
     breadcrumb: {
       '@type': 'BreadcrumbList',
