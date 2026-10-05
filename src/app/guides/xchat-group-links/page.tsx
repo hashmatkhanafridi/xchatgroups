@@ -8,7 +8,14 @@ const url = 'https://www.xchatgroups.chat/guides/xchat-group-links';
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: url },
+  alternates: {
+    canonical: url,
+    languages: {
+      'en': url,
+      'pt-BR': 'https://www.xchatgroups.chat/pt/grupos-xchat',
+      'x-default': url,
+    },
+  },
   openGraph: { title, description, url, type: 'article' },
 };
 
@@ -18,6 +25,9 @@ export default function GroupLinksGuide() {
       <nav aria-label="Breadcrumb" className="mb-6 text-sm text-muted-foreground">
         <Link href="/" className="text-primary hover:underline">Home</Link> / Group Link Guide
       </nav>
+      <p className="mb-5 text-sm text-muted-foreground">
+        <Link href="/pt/grupos-xchat" hrefLang="pt-BR" className="text-primary hover:underline">Leia este guia em português</Link>
+      </p>
       <h1 className="text-3xl sm:text-4xl font-bold mb-5">XChat group links: find a community and check its invitation</h1>
       <p className="text-lg text-muted-foreground leading-relaxed">A useful group starts with a shared interest. This independent directory helps you browse user-submitted communities on X and find their invitation links. The group owner controls access; this directory cannot grant membership or restore an invitation.</p>
 
