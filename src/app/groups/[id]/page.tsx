@@ -2,6 +2,7 @@ import { serializeJsonLd } from '@/lib/utils';
 import { supabase } from '@/lib/supabase';
 import { Group, Category } from '@/lib/types';
 import { GroupCard } from '@/components/GroupCard';
+import { SnapPixelViewContent } from '@/components/SnapPixel';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Users, ExternalLink, ArrowLeft, Tag } from 'lucide-react';
@@ -122,6 +123,7 @@ export default async function GroupPage({ params }: { params: { id: string } }) 
   return (
     <>
       <GroupJsonLd group={group} category={category} url={pageUrl} />
+      <SnapPixelViewContent itemId={String(group.id)} itemCategory={category?.name} />
 
       <div className="container mx-auto px-4 py-10 md:py-14 max-w-4xl">
         {/* Breadcrumb */}
