@@ -28,6 +28,7 @@ export function Footer() {
             </h4>
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
               <li><Link href="/guides/xchat-group-links" className="hover:text-primary transition-colors py-0.5">Group Link Guide</Link></li>
+              <li><Link href="/pt/grupos-xchat" hrefLang="pt-BR" className="hover:text-primary transition-colors py-0.5">Guia em Português</Link></li>
               <li>
                 <Link
                   href="/about"

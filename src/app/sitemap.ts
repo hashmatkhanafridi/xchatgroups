@@ -10,6 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes: MetadataRoute.Sitemap = [
     { url: baseUrl, changeFrequency: 'daily', priority: 1.0 },
     { url: `${baseUrl}/guides/xchat-group-links`, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/pt/grupos-xchat`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/submit`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/about`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/privacy`, changeFrequency: 'monthly', priority: 0.5 },
