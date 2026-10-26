@@ -9,8 +9,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.xchatgroups.chat"),
-  title: "XChat Group Links - Browse Groups by Category",
-  description: "An unofficial directory for XChat groups on X. Browse categories, find niche communities, and share your XChat group links for free.",
+  title: "XChat Group Links | Browse X Group Chats",
+  description: "Browse X group chat links by topic. Explore user-submitted XChat communities, check each listing before joining, or submit a group for review.",
   alternates: {
     canonical: "/",
   },
@@ -23,8 +23,8 @@ export const metadata: Metadata = {
     apple: [{ url: '/apple-icon', sizes: '180x180', type: 'image/png' }],
   },
   openGraph: {
-    title: "XChat Group Links - Browse Groups by Category",
-    description: "An unofficial directory for XChat groups on X. Browse categories, find niche communities, and share your XChat group links for free.",
+    title: "XChat Group Links | Browse X Group Chats",
+    description: "Browse X group chat links by topic. Explore user-submitted XChat communities, check each listing before joining, or submit a group for review.",
     url: "https://www.xchatgroups.chat",
     siteName: "XChat Groups Directory",
     type: "website",
