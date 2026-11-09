@@ -35,7 +35,7 @@ export function dedupeGroupsByInvitation<T extends { join_link?: string | null }
       const url = new URL(rawLink);
       url.hash = '';
       if (url.pathname.length > 1) {
-        url.pathname = url.pathname.replace(/\\/+$/, '');
+        url.pathname = url.pathname.replace(/\/+$/, '');
       }
       key = url.toString();
     } catch {
