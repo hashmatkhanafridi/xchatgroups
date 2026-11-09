@@ -2,6 +2,7 @@ import { supabase } from '@/lib/supabase';
 import { GroupCard } from '@/components/GroupCard';
 import { Group, Category } from '@/lib/types';
 import Link from 'next/link';
+import { dedupeGroupsByInvitation } from '@/lib/utils';
 
 export const revalidate = 60; // Revalidate every minute
 
@@ -24,7 +25,7 @@ async function getRecentGroups() {
     .select('*, categories(*)')
     .eq('status', 'approved')
     .order('submitted_at', { ascending: false })
-    .limit(6);
+    .limit(24); // Fetch a buffer so duplicate invitations do not reduce the six visible cards.
   
   if (error) {
     console.error('Error fetching groups:', error);
@@ -38,6 +39,7 @@ export default async function Home() {
     getCategories(),
     getRecentGroups()
   ]);
+  const uniqueRecentGroups = dedupeGroupsByInvitation(recentGroups as Group[]).slice(0, 6);
 
   return (
     <div className="flex flex-col gap-8 sm:gap-10 md:gap-16 pb-10 md:pb-16">
@@ -76,9 +78,9 @@ export default async function Home() {
           <h2 className="text-2xl font-bold">Recently Added</h2>
         </div>
         
-        {recentGroups.length > 0 ? (
+        {uniqueRecentGroups.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recentGroups.map((group) => (
+            {uniqueRecentGroups.map((group) => (
               <GroupCard 
                 key={group.id} 
                 group={group as unknown as Group} 

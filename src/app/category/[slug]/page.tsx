@@ -1,4 +1,4 @@
-import { serializeJsonLd } from '@/lib/utils';
+import { serializeJsonLd, dedupeGroupsByInvitation } from '@/lib/utils';
 import { supabase } from '@/lib/supabase';
 import { GroupCard } from '@/components/GroupCard';
 import { Group, Category } from '@/lib/types';
@@ -119,7 +119,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
       .order('name'),
   ]);
 
-  const groups = (groupsData || []) as Group[];
+  const groups = dedupeGroupsByInvitation((groupsData || []) as Group[]);
   const otherCategories = (allCategoriesData || []) as Category[];
 
   return (

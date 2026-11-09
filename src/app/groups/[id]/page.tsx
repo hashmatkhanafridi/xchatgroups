@@ -1,4 +1,4 @@
-import { serializeJsonLd } from '@/lib/utils';
+import { serializeJsonLd, dedupeGroupsByInvitation } from '@/lib/utils';
 import { supabase } from '@/lib/supabase';
 import { Group, Category } from '@/lib/types';
 import { GroupCard } from '@/components/GroupCard';
@@ -39,8 +39,9 @@ async function getRelatedGroups(categoryId: string, excludeId: string) {
     .eq('category_id', categoryId)
     .eq('status', 'approved')
     .neq('id', excludeId)
-    .limit(3);
-  return data || [];
+    .order('submitted_at', { ascending: false })
+    .limit(9);
+  return dedupeGroupsByInvitation((data || []) as Group[]).slice(0, 3);
 }
 
 // ─── Dynamic Metadata ─────────────────────────────────────────────────────────

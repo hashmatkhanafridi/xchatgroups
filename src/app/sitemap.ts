@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { supabase } from '@/lib/supabase';
+import { dedupeGroupsByInvitation } from '@/lib/utils';
 
 export const revalidate = 3600;
 
@@ -37,14 +38,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Individual group pages
   const { data: groups, error: groupsError } = await supabase
     .from('groups')
-    .select('id, slug')
-    .eq('status', 'approved');
+    .select('id, slug, join_link')
+    .eq('status', 'approved')
+    .order('submitted_at', { ascending: false });
 
   if (groupsError) throw new Error('Unable to load sitemap groups');
 
   if (groups) {
     routes.push(
-      ...groups.map((g) => ({
+      ...dedupeGroupsByInvitation(groups).map((g) => ({
         url: `${baseUrl}/groups/${g.slug || g.id}`,
         changeFrequency: 'weekly' as const,
         priority: 0.8,
