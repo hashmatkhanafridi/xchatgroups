@@ -1,11 +1,10 @@
-import { serializeJsonLd } from '@/lib/utils';
+import { serializeJsonLd, dedupeGroupsByInvitation } from '@/lib/utils';
 import { supabase } from '@/lib/supabase';
 import { GroupCard } from '@/components/GroupCard';
 import { Group, Category } from '@/lib/types';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { dedupeGroupsByInvitation } from '@/lib/utils';
 
 export const revalidate = 3600;
 
