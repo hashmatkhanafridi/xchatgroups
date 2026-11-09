@@ -5,6 +5,7 @@ import { Group, Category } from '@/lib/types';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { dedupeGroupsByInvitation } from '@/lib/utils';
 
 export const revalidate = 3600;
 
@@ -119,7 +120,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
       .order('name'),
   ]);
 
-  const groups = (groupsData || []) as Group[];
+  const groups = dedupeGroupsByInvitation((groupsData || []) as Group[]);
   const otherCategories = (allCategoriesData || []) as Category[];
 
   return (
