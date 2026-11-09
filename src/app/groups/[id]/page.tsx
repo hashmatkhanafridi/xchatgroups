@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Users, ExternalLink, ArrowLeft, Tag } from 'lucide-react';
 import type { Metadata } from 'next';
+import { dedupeGroupsByInvitation } from '@/lib/utils';
 
 export const revalidate = 3600;
 
@@ -39,8 +40,9 @@ async function getRelatedGroups(categoryId: string, excludeId: string) {
     .eq('category_id', categoryId)
     .eq('status', 'approved')
     .neq('id', excludeId)
-    .limit(3);
-  return data || [];
+    .order('submitted_at', { ascending: false })
+    .limit(9);
+  return dedupeGroupsByInvitation((data || []) as Group[]).slice(0, 3);
 }
 
 // ─── Dynamic Metadata ─────────────────────────────────────────────────────────
